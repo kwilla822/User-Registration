@@ -1,0 +1,9 @@
+{
+  "name": "js-wdceek",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "knockout": "^3.5.1"
+  }
+}

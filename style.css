@@ -21,6 +21,24 @@ input {
   font-size: 12px;
 }
 
+select {
+  height: 24px;
+  width: 205px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0;
+  outline: 1px solid #CCC;
+  background-color: white;
+  padding-left: 3px;
+  font-size: 12px;
+  color: black;
+}
+
+select:invalid {
+  color: gray;
+}
+
 button {
   margin-top: 20px;
   height: 40px;

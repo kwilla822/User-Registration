@@ -5,27 +5,28 @@ import $ from 'jquery';
 
 // Write Javascript code!
 
-var user = {
-  firstName: ko.observable(),
-  lastName: ko.observable(),
-  npiNumber: ko.observable(),
-  businessAddress: ko.observable(),
-  telephoneNumber: ko.observable(),
-  emailAddress: ko.observable(),
-  registerUser: function() {
+function User() {
+  var self = this;
+
+  self.firstName = ko.observable();
+  self.lastName = ko.observable();
+  self.npiNumber = ko.observable();
+  self.businessAddress = ko.observable();
+  self.city = ko.observable();
+  self.state = ko.observable();
+  self.zipCode = ko.observable();
+  self.telephoneNumber = ko.observable();
+  self.emailAddress = ko.observable();
+  self.registerUser = function() {
     event.preventDefault();
     
     //Mock ajax success
-    $.ajax = ajax_response(ko.toJSON(user), true);
+    $.ajax = ajax_response(ko.toJSON(self), true);
 
     //Mock ajax error
     //$.ajax = ajax_response('{ "error": "unexpected server error" }', false);
 
-    callApiAsync();
-  }
-};
-
-function callApiAsync() {
+    //Call API async
     $.ajax({
       type: 'POST',
       //url: 'Some API Endpoint',
@@ -33,19 +34,20 @@ function callApiAsync() {
       success: function (results) {
         //Do something with the results
         var user = JSON.parse(results);
-        $("#main").html('<h2>Thank you for registering ' + user.firstName + '!</h2>');
+        $("#main").html('<h2>Thank you for registering ' + self.firstName() + '!</h2>');
       }
     });
   }
+};
 
-  function ajax_response(response, success) {
-    return function (params) {
-      if (success) {
-        params.success(response);
-      } else {
-        params.error(response);
-      }
-    };
-  }
+function ajax_response(response, success) {
+  return function (params) {
+    if (success) {
+      params.success(response);
+    } else {
+      params.error(response);
+    }
+  };
+}
 
-  ko.applyBindings(user);
+ko.applyBindings(new User());
